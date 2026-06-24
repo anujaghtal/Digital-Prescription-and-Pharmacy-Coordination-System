@@ -1,0 +1,53 @@
+Project Overview
+
+Develop a full-stack web application named Digital Prescription and Pharmacy Coordination System that digitizes prescription management and enables seamless coordination between doctors, patients, pharmacists, and administrators. The system should eliminate paper-based prescriptions, improve medication tracking, enhance communication between healthcare stakeholders, and provide secure access to medical records through a role-based platform.
+
+Technology Stack
+
+Build the backend using Java 21, Spring Boot, Spring Web, Spring Data JPA, Hibernate, Spring Security, JWT Authentication, MySQL Database, Lombok, Validation API, Swagger/OpenAPI Documentation, and Maven. Build the frontend using React.js (Vite), Bootstrap 5, Axios, React Router DOM, Context API, and responsive design principles. Use Git for version control and follow industry-standard project architecture.
+
+User Roles
+
+The system must support four roles: Admin, Doctor, Patient, and Pharmacist. Admin manages users and system settings. Doctors create and manage prescriptions. Patients view their prescriptions and treatment history. Pharmacists access prescriptions and update medication dispensing status.
+
+Authentication & Security
+
+Implement secure user registration and login using JWT-based authentication. Store passwords using BCrypt encryption. Apply role-based access control to all APIs and frontend routes. Ensure protected endpoints are accessible only to authorized users. Configure CORS for frontend-backend communication and maintain stateless session management.
+
+Core Functional Modules
+
+User Management Module: User registration, login, profile management, role assignment, account activation/deactivation, password update, and user listing.
+
+Doctor Module: Create digital prescriptions, search patients, view patient history, manage prescriptions, add medicines with dosage instructions, and monitor prescription status.
+
+Patient Module: View prescriptions, access treatment history, view doctor information, track medication status, and download prescription records.
+
+Pharmacy Module: View assigned prescriptions, update medicine dispensing status, manage medicine availability, and coordinate prescription fulfillment.
+
+Prescription Module: Create, update, retrieve, and manage prescriptions. Each prescription should contain doctor details, patient details, medicine information, dosage instructions, issue date, notes, and prescription status.
+
+Admin Module: Manage all users, monitor system activity, view reports, manage roles, and oversee prescription workflows.
+
+Database Requirements
+
+Design a normalized MySQL database with tables including users, roles, doctors, patients, pharmacists, prescriptions, medicines, and prescription_medicines. Establish proper one-to-one, one-to-many, and many-to-many relationships using foreign keys and indexing for optimized performance.
+
+API Requirements
+
+Develop RESTful APIs for authentication, user management, doctor operations, patient operations, pharmacy operations, and prescription management. Use proper HTTP methods, status codes, validation, exception handling, pagination, sorting, and filtering where necessary.
+
+Frontend Requirements
+
+Create responsive and professional user interfaces including Login Page, Registration Page, Admin Dashboard, Doctor Dashboard, Patient Dashboard, Pharmacist Dashboard, Prescription Management Pages, User Management Pages, and Profile Pages. Integrate all frontend pages with backend APIs using Axios and maintain authentication state using JWT tokens.
+
+Backend Architecture
+
+Follow layered architecture using packages such as controller, service, service implementation, repository, entity, DTO, security, configuration, and exception handling. Implement global exception handling, request validation, DTO mapping, and clean coding standards.
+
+Additional Features
+
+Integrate Swagger API documentation, audit logging, search functionality, pagination, sorting, responsive design, profile management, notification support, and downloadable prescription reports. Include comprehensive error handling and validation messages throughout the application.
+
+Project Deliverables
+
+Generate complete Spring Boot backend code, React frontend code, MySQL database schema, JWT authentication implementation, REST API documentation, project folder structure, setup instructions, sample data, README documentation, and deployment guidelines. The final application should be production-ready, scalable, secure, and maintainable while following modern software development best practices.

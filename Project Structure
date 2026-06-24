@@ -1,0 +1,41 @@
+dpcs-backend
+│
+├── controller
+│
+├── dto
+│
+├── entity
+│
+├── repository
+│
+├── service
+│
+├── serviceimpl
+│
+├── security
+│
+├── config
+│
+├── exception
+│
+├── util
+│
+└── DigitalPrescriptionApplication.java
+-------------------------
+dpcs-frontend
+│
+├── src
+│   │
+│   ├── pages
+│   │
+│   ├── components
+│   │
+│   ├── services
+│   │
+│   ├── context
+│   │
+│   ├── routes
+│   │
+│   └── layouts
+│
+└── public

@@ -1,0 +1,41 @@
+STEP 1 → Backend Skeleton
+STEP 2 → Database Connection
+STEP 3 → User Entity
+STEP 4 → Registration API
+STEP 5 → Test Registration API
+STEP 6 → React Setup
+STEP 7 → Registration Page
+STEP 8 → Connect Frontend & Backend
+STEP 9 → Test Registration End-to-End
+
+THEN
+
+STEP 10 → Login API
+STEP 11 → JWT
+STEP 12 → React Login
+STEP 13 → Test Login
+
+THEN
+
+STEP 14 → Role Based Security
+STEP 15 → Admin Module
+
+THEN
+
+STEP 16 → Doctor Module
+
+THEN
+
+STEP 17 → Patient Module
+
+THEN
+
+STEP 18 → Pharmacist Module
+
+THEN
+
+STEP 19 → Prescription Module
+
+THEN
+
+STEP 20 → Reports
