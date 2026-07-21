@@ -1,8 +1,9 @@
 package com.dpcs.exception;
 
-public class EmailAlreadyExistsException extends RuntimeException {
+public class EmailAlreadyExistsException extends RuntimeException{
 
-    public EmailAlreadyExistsException(String message) {
+    public EmailAlreadyExistsException(String message){
         super(message);
     }
+
 }

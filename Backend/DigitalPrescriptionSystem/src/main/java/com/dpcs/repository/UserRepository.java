@@ -1,15 +1,15 @@
 package com.dpcs.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 import com.dpcs.entity.User;
 
-@Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User,String>{
 
-    // Custom query methods (we will use later)
+    Optional<User> findByEmail(String email);
 
-    User findByEmail(String email);
+    boolean existsByEmail(String email);
 
 }

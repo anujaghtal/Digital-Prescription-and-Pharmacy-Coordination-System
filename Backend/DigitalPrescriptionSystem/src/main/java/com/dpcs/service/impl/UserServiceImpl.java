@@ -1,52 +1,43 @@
 package com.dpcs.service.impl;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.dpcs.dto.UserRequest;
 import com.dpcs.entity.User;
 import com.dpcs.exception.EmailAlreadyExistsException;
 import com.dpcs.repository.UserRepository;
 import com.dpcs.service.UserService;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService{
 
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final UserRepository repository;
+    private final PasswordEncoder encoder;
+
+    public UserServiceImpl(UserRepository repository,
+                           PasswordEncoder encoder){
+        this.repository=repository;
+        this.encoder=encoder;
+    }
 
     @Override
-    public User saveUser(User user) {
+    public User registerUser(UserRequest request){
 
-        User existingUser = userRepository.findByEmail(user.getEmail());
-
-        if (existingUser != null) {
-            throw new EmailAlreadyExistsException("Email already exists");
+        if(repository.existsByEmail(request.getEmail())){
+            throw new EmailAlreadyExistsException("Email already exists.");
         }
 
-        user.setPassword(
-                passwordEncoder.encode(user.getPassword()));
+        User user=new User();
 
-        return userRepository.save(user);
+        user.setFullName(request.getFullName());
+        user.setEmail(request.getEmail());
+        user.setPasswordHash(encoder.encode(request.getPassword()));
+        user.setRole(request.getRole());
+        user.setPhone(request.getPhone());
+
+        return repository.save(user);
+
     }
 
-    @Override
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
-    }
-
-    @Override
-    public User getUserById(Long id) {
-        return userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
-    }
-
-    @Override
-    public void deleteUser(Long id) {
-        userRepository.deleteById(id);
-    }
 }
