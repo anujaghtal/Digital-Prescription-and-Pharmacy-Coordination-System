@@ -1,0 +1,147 @@
+I am working on a full-stack project:
+
+Project:
+Digital Prescription and Pharmacy Coordination System
+
+Repository:
+Digital-Prescription-and-Pharmacy-Coordination-System
+
+Tech Stack:
+Backend:
+- Spring Boot
+- Spring Security
+- JWT Authentication
+- JPA/Hibernate
+- MySQL
+
+Frontend:
+- React + Vite
+
+Current Git Status:
+
+Branches:
+- main
+- feature/backend-auth
+- feature/frontend-login
+
+Current branch:
+feature/backend-auth
+
+Important Git history:
+
+main:
+31126b5 - modify structure
+
+feature/backend-auth:
+071a612 - Add JWT authentication and frontend login
+
+feature/frontend-login:
+071a612 - Add JWT authentication and frontend login
+
+
+The commit 071a612 contains:
+Backend:
+✅ JWT authentication setup
+✅ SecurityConfig changes
+✅ AuthController
+✅ User authentication
+✅ Doctor module
+    - Doctor entity
+    - DoctorRepository
+    - DoctorService
+    - DoctorServiceImpl
+    - DoctorController
+    - DoctorRequest DTO
+
+Frontend:
+✅ React Vite project
+✅ Login frontend setup
+
+
+Current situation:
+
+I accidentally created the commit "Add JWT authentication and frontend login" while working on both backend and frontend together.
+
+I pushed it:
+
+git push origin feature/backend-auth
+
+Now feature/backend-auth and feature/frontend-login point to the same commit:
+
+071a612
+
+
+Next workflow I want to follow:
+
+1. Keep main as stable branch.
+2. Finish one feature at a time.
+3. Merge completed features into main.
+4. Create new feature branches for new modules.
+
+Recommended next steps:
+
+- Merge feature/backend-auth into main because authentication and doctor module are completed.
+- Create a new branch:
+
+feature/patient
+
+from updated main.
+
+Commands planned:
+
+git checkout main
+git pull origin main
+git merge feature/backend-auth
+git push origin main
+
+Then:
+
+git checkout -b feature/patient
+
+Work on Patient module:
+
+Backend files expected:
+
+Patient.java
+PatientRepository.java
+PatientService.java
+PatientServiceImpl.java
+PatientController.java
+PatientRequest.java
+
+Commit example:
+
+git add .
+git commit -m "Implement patient management module"
+
+Push:
+
+git push -u origin feature/patient
+
+
+Future modules planned:
+
+feature/patient
+feature/prescription
+feature/pharmacy
+feature/medicine
+feature/dashboard
+feature/reports
+
+
+Git workflow:
+
+main
+ |
+ |-- feature/backend-auth      (completed)
+ |
+ |-- feature/patient           (next)
+ |
+ |-- feature/prescription
+ |
+ |-- feature/pharmacy
+ |
+ |-- feature/frontend-dashboard
+
+
+Please continue helping me from this current stage.
