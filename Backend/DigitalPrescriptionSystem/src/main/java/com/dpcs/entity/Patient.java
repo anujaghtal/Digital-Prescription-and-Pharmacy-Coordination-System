@@ -110,5 +110,5 @@ public class Patient {
 		this.createdAt = createdAt;
 	}
 
-    // getters setters
+   
 }
