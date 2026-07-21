@@ -1,82 +1,157 @@
 package com.dpcs.entity;
 
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
-@Table(name = "users")
+@Table(name="users")
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
-    @Column(nullable = false)
+    @Column(name="full_name",nullable=false)
     private String fullName;
 
-    @Column(unique = true, nullable = false)
+    @Column(nullable=false,unique=true)
     private String email;
 
-    @Column(nullable = false)
-    private String password;
+    @Column(name="password_hash",nullable=false)
+    private String passwordHash;
 
+    @Column(nullable=false)
+    private String role;
+
+    @Column(nullable=false)
     private String phone;
 
-    private Boolean enabled = true;
-    @ManyToOne
-    @JoinColumn(name = "role_id")
-    private Role role;
+    @Column(name="is_active")
+    private Boolean isActive=true;
 
-    public User() {
-    }
+    @Column(name="is_verified")
+    private Boolean isVerified=false;
 
-    public Long getId() {
-        return id;
-    }
+    @Column(name="profile_photo")
+    private String profilePhoto;
 
-    public String getFullName() {
-        return fullName;
-    }
+    @Column(name="created_at")
+    private LocalDateTime createdAt;
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
+    @Column(name="updated_at")
+    private LocalDateTime updatedAt;
 
-    public String getEmail() {
-        return email;
-    }
+    @Column(name="last_login")
+    private LocalDateTime lastLogin;
 
-    public void setEmail(String email) {
-        this.email = email;
+    @PrePersist
+    public void prePersist() {
+        id = UUID.randomUUID().toString();
+        createdAt = LocalDateTime.now();
+        updatedAt = LocalDateTime.now();
     }
 
-    public String getPassword() {
-        return password;
+    @PreUpdate
+    public void preUpdate() {
+        updatedAt = LocalDateTime.now();
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public String getId() {
+		return id;
+	}
 
-    public String getPhone() {
-        return phone;
-    }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
+	public String getFullName() {
+		return fullName;
+	}
 
-    public Boolean getEnabled() {
-        return enabled;
-    }
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
 
-    public void setEnabled(Boolean enabled) {
-        this.enabled = enabled;
-    }
-    public Role getRole() {
-        return role;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public void setRole(Role role) {
-        this.role = role;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPasswordHash() {
+		return passwordHash;
+	}
+
+	public void setPasswordHash(String passwordHash) {
+		this.passwordHash = passwordHash;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public Boolean getIsActive() {
+		return isActive;
+	}
+
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
+	}
+
+	public Boolean getIsVerified() {
+		return isVerified;
+	}
+
+	public void setIsVerified(Boolean isVerified) {
+		this.isVerified = isVerified;
+	}
+
+	public String getProfilePhoto() {
+		return profilePhoto;
+	}
+
+	public void setProfilePhoto(String profilePhoto) {
+		this.profilePhoto = profilePhoto;
+	}
+
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public LocalDateTime getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(LocalDateTime updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+
+	public LocalDateTime getLastLogin() {
+		return lastLogin;
+	}
+
+	public void setLastLogin(LocalDateTime lastLogin) {
+		this.lastLogin = lastLogin;
+	}
+
+    // Getters and Setters
+    
 }

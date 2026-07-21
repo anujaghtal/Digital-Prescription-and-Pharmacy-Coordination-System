@@ -42,3 +42,21 @@ out/
 
 # Java
 *.class
+
+# Eclipse
+.metadata/
+
+# Node
+node_modules/
+
+# Build files
+target/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
