@@ -47,10 +47,10 @@ public class PatientServiceImpl implements PatientService{
         return repository.findById(id).orElseThrow();
     }
 
-    @Override
-    public void delete(String id){
-        repository.deleteById(id);
-    }
+//    @Override
+//    public void delete(String id){
+//        repository.deleteById(id);
+//    }
     @Override
     public List<Patient> searchByGender(String gender) {
 
@@ -94,6 +94,15 @@ public class PatientServiceImpl implements PatientService{
         patient.setEmergencyContact(request.getEmergencyContact());
 
         return repository.save(patient);
+    }
+    
+    @Override
+    public void delete(String id) {
+
+        Patient patient = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Patient not found"));
+
+        repository.delete(patient);
     }
 
 }

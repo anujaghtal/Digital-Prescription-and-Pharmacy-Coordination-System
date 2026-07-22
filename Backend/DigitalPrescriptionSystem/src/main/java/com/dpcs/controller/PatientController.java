@@ -36,8 +36,9 @@ public class PatientController {
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable String id){
+    public String delete(@PathVariable String id){
         service.delete(id);
+        return "Patient Deleted Successfully";
     }
     @GetMapping("/search/gender")
     public List<Patient> searchByGender(@RequestParam String gender) {
