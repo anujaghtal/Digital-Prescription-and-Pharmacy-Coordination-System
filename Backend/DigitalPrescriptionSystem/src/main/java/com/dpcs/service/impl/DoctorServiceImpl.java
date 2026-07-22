@@ -46,5 +46,54 @@ public class DoctorServiceImpl implements DoctorService {
     public void deleteDoctor(String id) {
         repository.deleteById(id);
     }
+    
+    @Override
+    public List<Doctor> searchBySpecialization(String specialization) {
 
+        return repository.findBySpecializationContainingIgnoreCase(specialization);
+
+    }
+
+    @Override
+    public Doctor searchByLicenseNumber(String licenseNumber) {
+
+        return repository.findByLicenseNumber(licenseNumber);
+
+    }
+
+    @Override
+    public List<Doctor> searchByExperience(Integer years) {
+
+        return repository.findByYearsOfExperience(years);
+
+    }
+    
+    @Override
+    public List<Doctor> searchByExactFee(Double fee) {
+
+        return repository.findByConsultationFee(fee);
+
+    }
+
+    @Override
+    public List<Doctor> searchByMaxFee(Double fee) {
+
+        return repository.findByConsultationFeeLessThanEqual(fee);
+
+    }
+
+    @Override
+    public List<Doctor> searchByMinFee(Double fee) {
+
+        return repository.findByConsultationFeeGreaterThanEqual(fee);
+
+    }
+
+    @Override
+    public List<Doctor> searchByFeeRange(Double minFee, Double maxFee) {
+
+        return repository.findByConsultationFeeBetween(minFee, maxFee);
+
+    }
+    
 }

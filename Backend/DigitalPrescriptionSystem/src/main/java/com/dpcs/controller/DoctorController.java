@@ -37,5 +37,61 @@ public class DoctorController {
     public void delete(@PathVariable String id) {
         service.deleteDoctor(id);
     }
+    
+    @GetMapping("/search/specialization")
+    public List<Doctor> searchBySpecialization(
+            @RequestParam String specialization) {
+
+        return service.searchBySpecialization(specialization);
+
+    }
+
+    @GetMapping("/search/license")
+    public Doctor searchByLicense(
+            @RequestParam String licenseNumber) {
+
+        return service.searchByLicenseNumber(licenseNumber);
+
+    }
+
+    @GetMapping("/search/experience")
+    public List<Doctor> searchByExperience(
+            @RequestParam Integer years) {
+
+        return service.searchByExperience(years);
+
+    }
+
+    @GetMapping("/search/fee")
+    public List<Doctor> searchByExactFee(
+            @RequestParam Double fee) {
+
+        return service.searchByExactFee(fee);
+
+    }
+    @GetMapping("/search/fee/max")
+    public List<Doctor> searchByMaxFee(
+            @RequestParam Double fee) {
+
+        return service.searchByMaxFee(fee);
+
+    }
+    @GetMapping("/search/fee/min")
+    public List<Doctor> searchByMinFee(
+            @RequestParam Double fee) {
+
+        return service.searchByMinFee(fee);
+
+    }
+    @GetMapping("/search/fee/range")
+    public List<Doctor> searchByRange(
+
+            @RequestParam Double minFee,
+
+            @RequestParam Double maxFee) {
+
+        return service.searchByFeeRange(minFee, maxFee);
+
+    }
 
 }

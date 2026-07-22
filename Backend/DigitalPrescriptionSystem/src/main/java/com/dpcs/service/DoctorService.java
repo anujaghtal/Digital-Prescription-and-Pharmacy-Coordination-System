@@ -14,5 +14,17 @@ public interface DoctorService {
     Doctor getDoctor(String id);
 
     void deleteDoctor(String id);
+    List<Doctor> searchBySpecialization(String specialization);
 
+    Doctor searchByLicenseNumber(String licenseNumber);
+
+    List<Doctor> searchByExperience(Integer years);
+
+    List<Doctor> searchByExactFee(Double fee);
+
+    List<Doctor> searchByMaxFee(Double fee);
+
+    List<Doctor> searchByMinFee(Double fee);
+
+    List<Doctor> searchByFeeRange(Double minFee, Double maxFee);
 }
