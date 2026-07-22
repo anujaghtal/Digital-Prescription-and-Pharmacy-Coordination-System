@@ -1,5 +1,6 @@
 package com.dpcs.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.dpcs.dto.PrescriptionRequest;
@@ -14,5 +15,22 @@ public interface PrescriptionService {
     Prescription get(String id);
 
     void delete(String id);
+    List<Prescription> searchByDoctor(String doctorId);
+
+    List<Prescription> searchByPatient(String patientId);
+
+    List<Prescription> searchByStatus(String status);
+
+    List<Prescription> searchByDateRange(
+            LocalDateTime start,
+            LocalDateTime end);
+
+    List<Prescription> searchDoctorStatus(
+            String doctorId,
+            String status);
+
+    List<Prescription> searchPatientStatus(
+            String patientId,
+            String status);
 
 }

@@ -1,5 +1,6 @@
 package com.dpcs.service.impl;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -77,6 +78,58 @@ public class PrescriptionServiceImpl implements PrescriptionService {
                 .orElseThrow(() -> new RuntimeException("Prescription not found"));
 
         prescriptionRepository.delete(prescription);
+    }
+    
+    @Override
+    public List<Prescription> searchByDoctor(String doctorId) {
+
+        return prescriptionRepository.findByDoctor_Id(doctorId);
+
+    }
+
+    @Override
+    public List<Prescription> searchByPatient(String patientId) {
+
+        return prescriptionRepository.findByPatient_Id(patientId);
+
+    }
+
+    @Override
+    public List<Prescription> searchByStatus(String status) {
+
+        return prescriptionRepository.findByStatusIgnoreCase(status);
+
+    }
+
+    @Override
+    public List<Prescription> searchByDateRange(
+            LocalDateTime start,
+            LocalDateTime end) {
+
+        return prescriptionRepository.findByCreatedAtBetween(start, end);
+
+    }
+
+    @Override
+    public List<Prescription> searchDoctorStatus(
+            String doctorId,
+            String status) {
+
+        return prescriptionRepository.findByDoctor_IdAndStatusIgnoreCase(
+                doctorId,
+                status);
+
+    }
+
+    @Override
+    public List<Prescription> searchPatientStatus(
+            String patientId,
+            String status) {
+
+        return prescriptionRepository.findByPatient_IdAndStatusIgnoreCase(
+                patientId,
+                status);
+
     }
 
 }
