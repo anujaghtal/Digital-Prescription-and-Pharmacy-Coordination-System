@@ -10,34 +10,34 @@ import com.dpcs.repository.UserRepository;
 import com.dpcs.service.UserService;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     private final UserRepository repository;
-    private final PasswordEncoder encoder;
+    private final PasswordEncoder passwordEncoder;
 
     public UserServiceImpl(UserRepository repository,
-                           PasswordEncoder encoder){
-        this.repository=repository;
-        this.encoder=encoder;
+                           PasswordEncoder passwordEncoder) {
+
+        this.repository = repository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
-    public User registerUser(UserRequest request){
-
-        if(repository.existsByEmail(request.getEmail())){
+    public User registerUser(UserRequest request) {
+    	if (repository.existsByEmail(request.getEmail())) {
             throw new EmailAlreadyExistsException("Email already exists.");
         }
 
-        User user=new User();
+        User user = new User();
 
-//        user.setFullName(request.getFullName());
-//        user.setEmail(request.getEmail());
-//        user.setPasswordHash(encoder.encode(request.getPassword()));
-//        user.setRole(request.getRole());
-//        user.setPhone(request.getPhone());
+        user.setName(request.getFullName());
+        user.setEmail(request.getEmail());
+
+        // IMPORTANT
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
+        user.setPhone(request.getPhone());
+        user.setRole(request.getRole());
 
         return repository.save(user);
-
     }
-
 }

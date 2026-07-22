@@ -8,9 +8,8 @@ public class LoginResponse {
 
     public LoginResponse() {
     }
-    public LoginResponse(String token,String role,String message){
+    public LoginResponse(String token,String message){
         this.token=token;
-        this.role=role;
         this.message=message;
     }
 

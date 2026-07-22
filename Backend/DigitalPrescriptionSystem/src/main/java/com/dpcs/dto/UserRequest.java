@@ -8,6 +8,7 @@ public class UserRequest {
     @NotBlank
     private String fullName;
 
+    @NotBlank
     @Email
     private String email;
 
@@ -15,51 +16,52 @@ public class UserRequest {
     private String password;
 
     @NotBlank
-    private String role;
-
-    @NotBlank
     private String phone;
 
-	public String getFullName() {
-		return fullName;
-	}
+    @NotBlank
+    private String role;
 
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
-	}
+    public UserRequest() {
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getFullName() {
+        return fullName;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public String getRole() {
-		return role;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setRole(String role) {
-		this.role = role;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public String getPhone() {
-		return phone;
-	}
+    public String getPhone() {
+        return phone;
+    }
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
-    // Getters and Setters
-    
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
 }

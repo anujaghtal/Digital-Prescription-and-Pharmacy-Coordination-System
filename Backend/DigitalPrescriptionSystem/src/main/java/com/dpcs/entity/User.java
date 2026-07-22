@@ -23,6 +23,8 @@ public class User {
 
     @Column(nullable = false)
     private String role;
+    @Column(nullable = false)
+    private String phone;
 
     private Boolean active = true;
 
@@ -35,6 +37,14 @@ public class User {
         createdAt = LocalDateTime.now();
 
     }
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 
 	public String getId() {
 		return id;

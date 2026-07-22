@@ -1,51 +1,47 @@
 package com.dpcs.service.impl;
 
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
 
 import com.dpcs.dto.LoginRequest;
 import com.dpcs.dto.LoginResponse;
-import com.dpcs.entity.User;
-import com.dpcs.repository.UserRepository;
 import com.dpcs.security.JwtService;
 import com.dpcs.service.AuthService;
 
 @Service
 public class AuthServiceImpl implements AuthService {
 
-    private final UserRepository repository;
-    private final PasswordEncoder encoder;
+    private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
 
-    public AuthServiceImpl(UserRepository repository,
-                           PasswordEncoder encoder,
+    public AuthServiceImpl(AuthenticationManager authenticationManager,
                            JwtService jwtService) {
 
-        this.repository = repository;
-        this.encoder = encoder;
+        this.authenticationManager = authenticationManager;
         this.jwtService = jwtService;
     }
 
     @Override
     public LoginResponse login(LoginRequest request) {
 
-        User user = repository.findByEmail(request.getEmail())
-                .orElseThrow(() -> new RuntimeException("Invalid Email"));
+        authenticationManager.authenticate(
 
-        if(!encoder.matches(request.getPassword(),
-                user.getPassword())){
+                new UsernamePasswordAuthenticationToken(
 
-            throw new RuntimeException("Invalid Password");
-        }
+                        request.getEmail(),
+                        request.getPassword()
 
-        String token=jwtService.generateToken(user.getEmail());
+                )
+
+        );
+
+        String token = jwtService.generateToken(request.getEmail());
 
         return new LoginResponse(
                 token,
-                user.getRole(),
                 "Login Successful"
         );
-
     }
 
 }
