@@ -88,6 +88,9 @@ public class SecurityConfig {
                         
                         .requestMatchers("/api/dispenses/**")
                         .hasAnyRole("ADMIN","PHARMACIST")
+                        
+                        .requestMatchers("/api/dashboard/admin")
+                        .hasRole("ADMIN")
 
                         .anyRequest().authenticated()
 
