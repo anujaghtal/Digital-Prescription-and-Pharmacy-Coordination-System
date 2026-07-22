@@ -78,5 +78,22 @@ public class PatientServiceImpl implements PatientService{
         return repository.findAll(pageable);
 
     }
+    
+    @Override
+    public Patient update(String id, PatientRequest request) {
+
+        Patient patient = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Patient not found"));
+
+        patient.setUserId(request.getUserId());
+        patient.setDob(request.getDob());
+        patient.setGender(request.getGender());
+        patient.setBloodGroup(request.getBloodGroup());
+        patient.setHeight(request.getHeight());
+        patient.setWeight(request.getWeight());
+        patient.setEmergencyContact(request.getEmergencyContact());
+
+        return repository.save(patient);
+    }
 
 }

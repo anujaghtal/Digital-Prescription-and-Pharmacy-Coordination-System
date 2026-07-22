@@ -67,5 +67,12 @@ public class PatientController {
 
     }
     
+    @PutMapping("/{id}")
+    public Patient update(
+            @PathVariable String id,
+            @RequestBody PatientRequest request) {
+
+        return service.update(id, request);
+    }
 
 }

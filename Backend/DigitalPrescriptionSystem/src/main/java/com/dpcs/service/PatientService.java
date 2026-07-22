@@ -24,5 +24,7 @@ public interface PatientService {
     List<Patient> searchByEmergencyContact(String emergencyContact);
     
     Page<Patient> getPatients(Pageable pageable);
+    
+    Patient update(String id, PatientRequest request);
 
 }
