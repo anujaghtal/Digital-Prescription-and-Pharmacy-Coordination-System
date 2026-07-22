@@ -1,7 +1,8 @@
 package com.dpcs.security;
 
-import java.util.Collections;
+import java.util.List;
 
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -31,7 +32,8 @@ public class CustomUserDetailsService implements UserDetailsService {
         return new User(
                 user.getEmail(),
                 user.getPassword(),
-                Collections.emptyList()
+                //Collections.emptyList()
+                List.of(new SimpleGrantedAuthority("ROLE_" + user.getRole()))
         );
     }
 

@@ -68,6 +68,27 @@ public class SecurityConfig {
 
                         ).permitAll()
 
+                        // ADMIN
+                        .requestMatchers("/api/users/**").hasRole("ADMIN")
+                        
+                        .requestMatchers("/api/medicines/**")
+                        .hasAnyRole("ADMIN","DOCTOR","PHARMACIST")
+
+                        // DOCTOR
+                        .requestMatchers("/api/doctors/**").hasAnyRole("ADMIN","DOCTOR")
+                        
+                        .requestMatchers("/api/prescriptions/**")
+                        .hasAnyRole("ADMIN","DOCTOR","PHARMACIST")
+
+                        // PATIENT
+                        .requestMatchers("/api/patients/**").hasAnyRole("ADMIN","DOCTOR","PATIENT")
+
+                        // PHARMACIST
+                        .requestMatchers("/api/pharmacies/**").hasRole("PHARMACIST")
+                        
+                        .requestMatchers("/api/dispenses/**")
+                        .hasAnyRole("ADMIN","PHARMACIST")
+
                         .anyRequest().authenticated()
 
                 )
