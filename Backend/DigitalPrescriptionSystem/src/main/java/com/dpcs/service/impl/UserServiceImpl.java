@@ -77,5 +77,13 @@ public class UserServiceImpl implements UserService {
         return repository.findAll(pageable);
 
     }
+    @Override
+    public void delete(String id) {
+
+        User user = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        repository.delete(user);
+    }
     
 }

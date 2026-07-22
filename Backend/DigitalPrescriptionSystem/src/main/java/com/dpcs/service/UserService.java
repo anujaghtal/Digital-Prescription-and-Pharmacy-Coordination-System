@@ -18,4 +18,5 @@ public interface UserService {
     List<User> searchByName(String name);
 
     List<User> searchByRole(String role);
+    void delete(String id);
 }

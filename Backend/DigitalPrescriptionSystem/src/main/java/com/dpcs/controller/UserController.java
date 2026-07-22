@@ -64,7 +64,13 @@ public class UserController {
         return service.getUsers(pageable);
 
     }
-    
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable String id) {
+
+        service.delete(id);
+
+        return "User Deleted Successfully";
+    }
     
 
 }
