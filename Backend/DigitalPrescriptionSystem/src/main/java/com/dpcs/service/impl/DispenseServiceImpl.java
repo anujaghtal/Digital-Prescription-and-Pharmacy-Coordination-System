@@ -9,6 +9,7 @@ import com.dpcs.entity.Dispense;
 import com.dpcs.entity.Pharmacy;
 import com.dpcs.entity.Prescription;
 import com.dpcs.entity.PrescriptionItem;
+import com.dpcs.exception.ResourceNotFoundException;
 import com.dpcs.repository.DispenseRepository;
 import com.dpcs.repository.PharmacyRepository;
 import com.dpcs.repository.PrescriptionItemRepository;
@@ -45,12 +46,12 @@ public class DispenseServiceImpl implements DispenseService {
         Prescription prescription =
                 prescriptionRepository.findById(request.getPrescriptionId())
                         .orElseThrow(() ->
-                                new RuntimeException("Prescription Not Found"));
+                                new ResourceNotFoundException("Prescription Not Found"));
 
         Pharmacy pharmacy =
                 pharmacyRepository.findById(request.getPharmacyId())
                         .orElseThrow(() ->
-                                new RuntimeException("Pharmacy Not Found"));
+                                new ResourceNotFoundException("Pharmacy Not Found"));
 
         List<PrescriptionItem> items = itemRepository.findAll();
 
@@ -95,22 +96,22 @@ public class DispenseServiceImpl implements DispenseService {
 
         return dispenseRepository.findById(id)
                 .orElseThrow(() ->
-                        new RuntimeException("Dispense Record Not Found"));
+                        new ResourceNotFoundException("Dispense Record Not Found"));
 
     }
     @Override
     public Dispense update(String id, DispenseRequest request) {
 
         Dispense dispense = dispenseRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Dispense not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Dispense not found"));
 
         Prescription prescription = prescriptionRepository
                 .findById(request.getPrescriptionId())
-                .orElseThrow(() -> new RuntimeException("Prescription not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Prescription not found"));
 
         Pharmacy pharmacy = pharmacyRepository
                 .findById(request.getPharmacyId())
-                .orElseThrow(() -> new RuntimeException("Pharmacy not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Pharmacy not found"));
 
         dispense.setPrescription(prescription);
         dispense.setPharmacy(pharmacy);
@@ -123,7 +124,7 @@ public class DispenseServiceImpl implements DispenseService {
     public void delete(String id) {
 
         Dispense dispense = dispenseRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Dispense not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Dispense not found"));
 
         dispenseRepository.delete(dispense);
     }

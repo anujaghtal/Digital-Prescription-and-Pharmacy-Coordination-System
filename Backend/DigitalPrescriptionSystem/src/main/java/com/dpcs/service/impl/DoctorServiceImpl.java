@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.dpcs.dto.DoctorRequest;
 import com.dpcs.entity.Doctor;
+import com.dpcs.exception.ResourceNotFoundException;
 import com.dpcs.repository.DoctorRepository;
 import com.dpcs.service.DoctorService;
 
@@ -109,7 +110,7 @@ public class DoctorServiceImpl implements DoctorService {
     public Doctor updateDoctor(String id, DoctorRequest request) {
 
         Doctor doctor = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Doctor not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Doctor not found"));
 
         doctor.setUserId(request.getUserId());
         doctor.setSpecialization(request.getSpecialization());

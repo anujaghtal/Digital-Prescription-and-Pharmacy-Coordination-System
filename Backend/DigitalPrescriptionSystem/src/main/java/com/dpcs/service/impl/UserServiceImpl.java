@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.dpcs.dto.UserRequest;
 import com.dpcs.entity.User;
 import com.dpcs.exception.EmailAlreadyExistsException;
+import com.dpcs.exception.ResourceNotFoundException;
 import com.dpcs.repository.UserRepository;
 import com.dpcs.service.UserService;
 
@@ -81,7 +82,7 @@ public class UserServiceImpl implements UserService {
     public void delete(String id) {
 
         User user = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
 
         repository.delete(user);
     }

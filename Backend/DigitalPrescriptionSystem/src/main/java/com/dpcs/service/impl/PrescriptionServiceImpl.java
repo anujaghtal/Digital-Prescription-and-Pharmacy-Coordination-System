@@ -11,6 +11,7 @@ import com.dpcs.entity.Appointment;
 import com.dpcs.entity.Doctor;
 import com.dpcs.entity.Patient;
 import com.dpcs.entity.Prescription;
+import com.dpcs.exception.ResourceNotFoundException;
 import com.dpcs.repository.AppointmentRepository;
 import com.dpcs.repository.DoctorRepository;
 import com.dpcs.repository.PatientRepository;
@@ -41,13 +42,13 @@ public class PrescriptionServiceImpl implements PrescriptionService {
     public Prescription create(PrescriptionRequest request) {
 
         Doctor doctor = doctorRepository.findById(request.getDoctorId())
-                .orElseThrow(() -> new RuntimeException("Doctor not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Doctor not found"));
 
         Patient patient = patientRepository.findById(request.getPatientId())
-                .orElseThrow(() -> new RuntimeException("Patient not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Patient not found"));
 
         Appointment appointment = appointmentRepository.findById(request.getAppointmentId())
-                .orElseThrow(() -> new RuntimeException("Appointment not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Appointment not found"));
 
         Prescription prescription = new Prescription();
 
@@ -69,14 +70,14 @@ public class PrescriptionServiceImpl implements PrescriptionService {
     @Override
     public Prescription get(String id) {
         return prescriptionRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Prescription not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Prescription not found"));
     }
 
     @Override
     public void delete(String id) {
 
         Prescription prescription = prescriptionRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Prescription not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Prescription not found"));
 
         prescriptionRepository.delete(prescription);
     }
@@ -144,16 +145,16 @@ public class PrescriptionServiceImpl implements PrescriptionService {
                                PrescriptionRequest request) {
 
         Prescription prescription = prescriptionRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Prescription not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Prescription not found"));
 
         Doctor doctor = doctorRepository.findById(request.getDoctorId())
-                .orElseThrow(() -> new RuntimeException("Doctor not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Doctor not found"));
 
         Patient patient = patientRepository.findById(request.getPatientId())
-                .orElseThrow(() -> new RuntimeException("Patient not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Patient not found"));
 
         Appointment appointment = appointmentRepository.findById(request.getAppointmentId())
-                .orElseThrow(() -> new RuntimeException("Appointment not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Appointment not found"));
 
         prescription.setDoctor(doctor);
         prescription.setPatient(patient);

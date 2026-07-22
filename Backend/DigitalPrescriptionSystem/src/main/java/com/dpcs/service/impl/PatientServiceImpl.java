@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.dpcs.dto.PatientRequest;
 import com.dpcs.entity.Patient;
+import com.dpcs.exception.ResourceNotFoundException;
 import com.dpcs.repository.PatientRepository;
 import com.dpcs.service.PatientService;
 
@@ -83,7 +84,7 @@ public class PatientServiceImpl implements PatientService{
     public Patient update(String id, PatientRequest request) {
 
         Patient patient = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Patient not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Patient not found"));
 
         patient.setUserId(request.getUserId());
         patient.setDob(request.getDob());
@@ -100,7 +101,7 @@ public class PatientServiceImpl implements PatientService{
     public void delete(String id) {
 
         Patient patient = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Patient not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Patient not found"));
 
         repository.delete(patient);
     }

@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 
 import com.dpcs.dto.PharmacyRequest;
 import com.dpcs.entity.Pharmacy;
+import com.dpcs.exception.DuplicateResourceException;
+import com.dpcs.exception.ResourceNotFoundException;
 import com.dpcs.repository.PharmacyRepository;
 import com.dpcs.service.PharmacyService;
 
@@ -22,7 +24,7 @@ public class PharmacyServiceImpl implements PharmacyService {
     public Pharmacy save(PharmacyRequest request) {
 
         if(repository.existsByLicenseNumber(request.getLicenseNumber())){
-            throw new RuntimeException("License Number Already Exists");
+            throw new DuplicateResourceException("License Number Already Exists");
         }
 
         Pharmacy pharmacy = new Pharmacy();
@@ -45,7 +47,7 @@ public class PharmacyServiceImpl implements PharmacyService {
     @Override
     public Pharmacy getById(String id) {
         return repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Pharmacy not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Pharmacy not found"));
     }
 
     @Override

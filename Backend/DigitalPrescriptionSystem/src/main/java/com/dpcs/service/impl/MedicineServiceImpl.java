@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.dpcs.dto.MedicineRequest;
 import com.dpcs.entity.Medicine;
+import com.dpcs.exception.ResourceNotFoundException;
 import com.dpcs.repository.MedicineRepository;
 import com.dpcs.service.MedicineService;
 import org.springframework.data.domain.Page;
@@ -23,7 +24,7 @@ public class MedicineServiceImpl implements MedicineService {
     public Medicine save(MedicineRequest request) {
 
         if(repository.existsByName(request.getName())) {
-            throw new RuntimeException("Medicine already exists");
+            throw new ResourceNotFoundException("Medicine already exists");
         }
 
         Medicine medicine = new Medicine();
@@ -47,7 +48,7 @@ public class MedicineServiceImpl implements MedicineService {
     @Override
     public Medicine getById(String id) {
         return repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Medicine not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Medicine not found"));
     }
 
     @Override
@@ -130,7 +131,7 @@ public class MedicineServiceImpl implements MedicineService {
     public Medicine update(String id, MedicineRequest request) {
 
         Medicine medicine = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Medicine not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Medicine not found"));
 
         medicine.setName(request.getName());
         medicine.setGenericName(request.getGenericName());

@@ -8,6 +8,7 @@ import com.dpcs.dto.PrescriptionItemRequest;
 import com.dpcs.entity.Medicine;
 import com.dpcs.entity.Prescription;
 import com.dpcs.entity.PrescriptionItem;
+import com.dpcs.exception.ResourceNotFoundException;
 import com.dpcs.repository.MedicineRepository;
 import com.dpcs.repository.PrescriptionItemRepository;
 import com.dpcs.repository.PrescriptionRepository;
@@ -39,12 +40,12 @@ public class PrescriptionItemServiceImpl
         Prescription prescription =
                 prescriptionRepository.findById(request.getPrescriptionId())
                         .orElseThrow(() ->
-                                new RuntimeException("Prescription not found"));
+                                new ResourceNotFoundException("Prescription not found"));
 
         Medicine medicine =
                 medicineRepository.findById(request.getMedicineId())
                         .orElseThrow(() ->
-                                new RuntimeException("Medicine not found"));
+                                new ResourceNotFoundException("Medicine not found"));
 
         PrescriptionItem item = new PrescriptionItem();
 
@@ -68,7 +69,7 @@ public class PrescriptionItemServiceImpl
     public PrescriptionItem getById(String id) {
         return itemRepository.findById(id)
                 .orElseThrow(() ->
-                        new RuntimeException("Prescription Item not found"));
+                        new ResourceNotFoundException("Prescription Item not found"));
     }
 
     @Override

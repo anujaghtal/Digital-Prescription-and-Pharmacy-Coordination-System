@@ -1,26 +1,26 @@
 package com.dpcs.exception;
 
 import java.time.LocalDateTime;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
-
-import com.dpcs.dto.ErrorResponse;
+import org.springframework.web.bind.annotation.*;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(EmailAlreadyExistsException.class)
-    public ResponseEntity<ErrorResponse> handleEmail(EmailAlreadyExistsException ex){
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public Map<String, Object> handleNotFound(ResourceNotFoundException ex) {
 
-        ErrorResponse error=new ErrorResponse(
-                LocalDateTime.now(),
-                HttpStatus.BAD_REQUEST.value(),
-                ex.getMessage());
+        Map<String, Object> response = new LinkedHashMap<>();
 
-        return new ResponseEntity<>(error,HttpStatus.BAD_REQUEST);
+        response.put("timestamp", LocalDateTime.now());
+        response.put("status", 404);
+        response.put("error", "Not Found");
+        response.put("message", ex.getMessage());
+
+        return response;
     }
 
 }
