@@ -25,5 +25,6 @@ public interface DoctorRepository extends JpaRepository<Doctor,String> {
     List<Doctor> findByConsultationFeeBetween(Double minFee, Double maxFee);
 
     List<Doctor> findByUserId(String userId);
-
+    List<Doctor> findByActiveTrue();
+    
 }

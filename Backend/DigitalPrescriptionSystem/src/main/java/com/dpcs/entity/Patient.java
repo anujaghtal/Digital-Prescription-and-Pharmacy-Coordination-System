@@ -31,6 +31,9 @@ public class Patient {
 
     @Column(name="created_at")
     private LocalDateTime createdAt;
+    
+    @Column(nullable = false)
+    private Boolean active = true;
 
     @PrePersist
     public void prePersist(){
@@ -108,6 +111,14 @@ public class Patient {
 
 	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
 	}
 
    

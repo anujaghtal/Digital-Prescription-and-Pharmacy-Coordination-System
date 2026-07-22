@@ -23,6 +23,8 @@ public class Dispense {
     private LocalDateTime dispensedAt;
 
     private String remarks;
+    @Column(nullable = false)
+    private Boolean active = true;
 
     @PrePersist
     public void prePersist() {
@@ -70,6 +72,14 @@ public class Dispense {
 
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
 	}
 
     

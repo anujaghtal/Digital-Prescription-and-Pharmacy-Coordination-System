@@ -30,6 +30,8 @@ public class Prescription {
     private String notes;
 
     private String status;
+    @Column(nullable = false)
+    private Boolean active = true;
 
     private LocalDateTime createdAt;
 
@@ -101,6 +103,14 @@ public class Prescription {
 
 	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
 	}
 
    

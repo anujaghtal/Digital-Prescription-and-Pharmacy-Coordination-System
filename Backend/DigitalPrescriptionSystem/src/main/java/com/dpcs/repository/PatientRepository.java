@@ -13,4 +13,5 @@ public interface PatientRepository extends JpaRepository<Patient,String>{
 	    List<Patient> findByEmergencyContact(String emergencyContact);
 
 	    List<Patient> findByUserId(String userId);
+	    List<Patient> findByActiveTrue();
 }

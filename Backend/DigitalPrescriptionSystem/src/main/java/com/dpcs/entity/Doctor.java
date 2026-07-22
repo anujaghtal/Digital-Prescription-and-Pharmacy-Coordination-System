@@ -28,7 +28,9 @@ public class Doctor {
 
     @Column(name="created_at")
     private LocalDateTime createdAt;
-
+    @Column(nullable = false)
+    private Boolean active = true;
+    
     @PrePersist
     public void prePersist() {
         id = UUID.randomUUID().toString();
@@ -91,6 +93,14 @@ public class Doctor {
 		this.createdAt = createdAt;
 	}
 
-    // Getters and Setters
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
+ 
     
 }
