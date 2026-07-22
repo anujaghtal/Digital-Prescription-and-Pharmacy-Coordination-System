@@ -30,11 +30,11 @@ public class UserServiceImpl implements UserService{
 
         User user=new User();
 
-        user.setFullName(request.getFullName());
-        user.setEmail(request.getEmail());
-        user.setPasswordHash(encoder.encode(request.getPassword()));
-        user.setRole(request.getRole());
-        user.setPhone(request.getPhone());
+//        user.setFullName(request.getFullName());
+//        user.setEmail(request.getEmail());
+//        user.setPasswordHash(encoder.encode(request.getPassword()));
+//        user.setRole(request.getRole());
+//        user.setPhone(request.getPhone());
 
         return repository.save(user);
 

@@ -1,59 +1,39 @@
 package com.dpcs.entity;
 
-import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import jakarta.persistence.*;
+
 @Entity
-@Table(name="users")
+@Table(name = "users")
 public class User {
 
     @Id
     private String id;
 
-    @Column(name="full_name",nullable=false)
-    private String fullName;
+    @Column(nullable = false)
+    private String name;
 
-    @Column(nullable=false,unique=true)
+    @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(name="password_hash",nullable=false)
-    private String passwordHash;
+    @Column(nullable = false)
+    private String password;
 
-    @Column(nullable=false)
+    @Column(nullable = false)
     private String role;
 
-    @Column(nullable=false)
-    private String phone;
+    private Boolean active = true;
 
-    @Column(name="is_active")
-    private Boolean isActive=true;
-
-    @Column(name="is_verified")
-    private Boolean isVerified=false;
-
-    @Column(name="profile_photo")
-    private String profilePhoto;
-
-    @Column(name="created_at")
     private LocalDateTime createdAt;
-
-    @Column(name="updated_at")
-    private LocalDateTime updatedAt;
-
-    @Column(name="last_login")
-    private LocalDateTime lastLogin;
 
     @PrePersist
     public void prePersist() {
+
         id = UUID.randomUUID().toString();
         createdAt = LocalDateTime.now();
-        updatedAt = LocalDateTime.now();
-    }
 
-    @PreUpdate
-    public void preUpdate() {
-        updatedAt = LocalDateTime.now();
     }
 
 	public String getId() {
@@ -64,12 +44,12 @@ public class User {
 		this.id = id;
 	}
 
-	public String getFullName() {
-		return fullName;
+	public String getName() {
+		return name;
 	}
 
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getEmail() {
@@ -80,12 +60,12 @@ public class User {
 		this.email = email;
 	}
 
-	public String getPasswordHash() {
-		return passwordHash;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setPasswordHash(String passwordHash) {
-		this.passwordHash = passwordHash;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getRole() {
@@ -96,36 +76,12 @@ public class User {
 		this.role = role;
 	}
 
-	public String getPhone() {
-		return phone;
+	public Boolean getActive() {
+		return active;
 	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	public Boolean getIsActive() {
-		return isActive;
-	}
-
-	public void setIsActive(Boolean isActive) {
-		this.isActive = isActive;
-	}
-
-	public Boolean getIsVerified() {
-		return isVerified;
-	}
-
-	public void setIsVerified(Boolean isVerified) {
-		this.isVerified = isVerified;
-	}
-
-	public String getProfilePhoto() {
-		return profilePhoto;
-	}
-
-	public void setProfilePhoto(String profilePhoto) {
-		this.profilePhoto = profilePhoto;
+	public void setActive(Boolean active) {
+		this.active = active;
 	}
 
 	public LocalDateTime getCreatedAt() {
@@ -136,22 +92,5 @@ public class User {
 		this.createdAt = createdAt;
 	}
 
-	public LocalDateTime getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(LocalDateTime updatedAt) {
-		this.updatedAt = updatedAt;
-	}
-
-	public LocalDateTime getLastLogin() {
-		return lastLogin;
-	}
-
-	public void setLastLogin(LocalDateTime lastLogin) {
-		this.lastLogin = lastLogin;
-	}
-
-    // Getters and Setters
     
 }

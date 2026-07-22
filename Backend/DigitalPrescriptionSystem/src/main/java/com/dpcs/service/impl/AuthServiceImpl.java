@@ -33,7 +33,7 @@ public class AuthServiceImpl implements AuthService {
                 .orElseThrow(() -> new RuntimeException("Invalid Email"));
 
         if(!encoder.matches(request.getPassword(),
-                user.getPasswordHash())){
+                user.getPassword())){
 
             throw new RuntimeException("Invalid Password");
         }
