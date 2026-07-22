@@ -37,5 +37,7 @@ public interface PrescriptionService {
             String status);
     
     Page<Prescription> getPrescriptions(Pageable pageable);
+    
+    Prescription update(String id, PrescriptionRequest request);
 
 }

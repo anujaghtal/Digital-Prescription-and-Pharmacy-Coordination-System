@@ -12,5 +12,8 @@ public interface DispenseService {
     List<Dispense> getAll();
 
     Dispense getById(String id);
+    Dispense update(String id, DispenseRequest request);
+
+    void delete(String id);
 
 }

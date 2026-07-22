@@ -138,5 +138,30 @@ public class PrescriptionServiceImpl implements PrescriptionService {
         return prescriptionRepository.findAll(pageable);
 
     }
+    
+    @Override
+    public Prescription update(String id,
+                               PrescriptionRequest request) {
+
+        Prescription prescription = prescriptionRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Prescription not found"));
+
+        Doctor doctor = doctorRepository.findById(request.getDoctorId())
+                .orElseThrow(() -> new RuntimeException("Doctor not found"));
+
+        Patient patient = patientRepository.findById(request.getPatientId())
+                .orElseThrow(() -> new RuntimeException("Patient not found"));
+
+        Appointment appointment = appointmentRepository.findById(request.getAppointmentId())
+                .orElseThrow(() -> new RuntimeException("Appointment not found"));
+
+        prescription.setDoctor(doctor);
+        prescription.setPatient(patient);
+        prescription.setAppointment(appointment);
+        prescription.setDiagnosis(request.getDiagnosis());
+        prescription.setNotes(request.getNotes());
+
+        return prescriptionRepository.save(prescription);
+    }
 
 }

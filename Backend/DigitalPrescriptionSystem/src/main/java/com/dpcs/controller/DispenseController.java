@@ -42,5 +42,20 @@ public class DispenseController {
         return service.getById(id);
 
     }
+    @PutMapping("/{id}")
+    public Dispense update(
+            @PathVariable String id,
+            @RequestBody DispenseRequest request) {
+
+        return service.update(id, request);
+    }
+
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable String id) {
+
+        service.delete(id);
+
+        return "Dispense Deleted Successfully";
+    }
 
 }

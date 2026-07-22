@@ -98,5 +98,34 @@ public class DispenseServiceImpl implements DispenseService {
                         new RuntimeException("Dispense Record Not Found"));
 
     }
+    @Override
+    public Dispense update(String id, DispenseRequest request) {
+
+        Dispense dispense = dispenseRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Dispense not found"));
+
+        Prescription prescription = prescriptionRepository
+                .findById(request.getPrescriptionId())
+                .orElseThrow(() -> new RuntimeException("Prescription not found"));
+
+        Pharmacy pharmacy = pharmacyRepository
+                .findById(request.getPharmacyId())
+                .orElseThrow(() -> new RuntimeException("Pharmacy not found"));
+
+        dispense.setPrescription(prescription);
+        dispense.setPharmacy(pharmacy);
+        dispense.setRemarks(request.getRemarks());
+
+        return dispenseRepository.save(dispense);
+    }
+
+    @Override
+    public void delete(String id) {
+
+        Dispense dispense = dispenseRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Dispense not found"));
+
+        dispenseRepository.delete(dispense);
+    }
 
 }

@@ -113,5 +113,12 @@ public class PrescriptionController {
         return prescriptionService.getPrescriptions(pageable);
 
     }
+    @PutMapping("/{id}")
+    public Prescription update(
+            @PathVariable String id,
+            @RequestBody PrescriptionRequest request) {
+
+        return prescriptionService.update(id, request);
+    }
 
 }
