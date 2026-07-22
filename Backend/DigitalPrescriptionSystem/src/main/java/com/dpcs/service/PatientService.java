@@ -14,5 +14,10 @@ public interface PatientService {
     Patient getById(String id);
 
     void delete(String id);
+    List<Patient> searchByGender(String gender);
+
+    List<Patient> searchByBloodGroup(String bloodGroup);
+
+    List<Patient> searchByEmergencyContact(String emergencyContact);
 
 }

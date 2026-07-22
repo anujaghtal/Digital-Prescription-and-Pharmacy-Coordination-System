@@ -37,5 +37,27 @@ public class PatientController {
     public void delete(@PathVariable String id){
         service.delete(id);
     }
+    @GetMapping("/search/gender")
+    public List<Patient> searchByGender(@RequestParam String gender) {
+
+        return service.searchByGender(gender);
+
+    }
+
+    @GetMapping("/search/blood-group")
+    public List<Patient> searchByBloodGroup(@RequestParam String bloodGroup) {
+
+        return service.searchByBloodGroup(bloodGroup);
+
+    }
+
+    @GetMapping("/search/emergency-contact")
+    public List<Patient> searchByEmergencyContact(
+            @RequestParam String emergencyContact) {
+
+        return service.searchByEmergencyContact(emergencyContact);
+
+    }
+    
 
 }

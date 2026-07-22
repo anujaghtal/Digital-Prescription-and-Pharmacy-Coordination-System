@@ -49,5 +49,25 @@ public class PatientServiceImpl implements PatientService{
     public void delete(String id){
         repository.deleteById(id);
     }
+    @Override
+    public List<Patient> searchByGender(String gender) {
+
+        return repository.findByGenderIgnoreCase(gender);
+
+    }
+
+    @Override
+    public List<Patient> searchByBloodGroup(String bloodGroup) {
+
+        return repository.findByBloodGroupIgnoreCase(bloodGroup);
+
+    }
+
+    @Override
+    public List<Patient> searchByEmergencyContact(String emergencyContact) {
+
+        return repository.findByEmergencyContact(emergencyContact);
+
+    }
 
 }
