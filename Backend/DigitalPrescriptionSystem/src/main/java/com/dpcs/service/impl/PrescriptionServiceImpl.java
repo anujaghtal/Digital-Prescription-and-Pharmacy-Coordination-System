@@ -4,7 +4,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import com.dpcs.dto.PrescriptionRequest;
 import com.dpcs.entity.Appointment;
 import com.dpcs.entity.Doctor;
@@ -129,6 +130,12 @@ public class PrescriptionServiceImpl implements PrescriptionService {
         return prescriptionRepository.findByPatient_IdAndStatusIgnoreCase(
                 patientId,
                 status);
+
+    }
+    @Override
+    public Page<Prescription> getPrescriptions(Pageable pageable) {
+
+        return prescriptionRepository.findAll(pageable);
 
     }
 

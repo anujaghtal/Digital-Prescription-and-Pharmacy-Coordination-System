@@ -2,6 +2,8 @@ package com.dpcs.service.impl;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.dpcs.dto.DoctorRequest;
@@ -93,6 +95,13 @@ public class DoctorServiceImpl implements DoctorService {
     public List<Doctor> searchByFeeRange(Double minFee, Double maxFee) {
 
         return repository.findByConsultationFeeBetween(minFee, maxFee);
+
+    }
+    
+    @Override
+    public Page<Doctor> getDoctors(Pageable pageable) {
+
+        return repository.findAll(pageable);
 
     }
     

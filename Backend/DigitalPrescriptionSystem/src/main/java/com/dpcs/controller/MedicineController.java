@@ -2,6 +2,8 @@ package com.dpcs.controller;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import com.dpcs.dto.MedicineRequest;
@@ -23,7 +25,7 @@ public class MedicineController {
         return service.save(request);
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public List<Medicine> getAll() {
         return service.getAll();
     }
@@ -106,4 +108,10 @@ public class MedicineController {
         return service.searchActive(active);
     }
     
+    @GetMapping
+    public Page<Medicine> getMedicines(Pageable pageable) {
+
+        return service.getMedicines(pageable);
+
+    }
 }

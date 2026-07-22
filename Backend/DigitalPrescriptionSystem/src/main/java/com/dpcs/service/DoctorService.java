@@ -2,7 +2,8 @@ package com.dpcs.service;
 
 import com.dpcs.dto.DoctorRequest;
 import com.dpcs.entity.Doctor;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface DoctorService {
@@ -27,4 +28,6 @@ public interface DoctorService {
     List<Doctor> searchByMinFee(Double fee);
 
     List<Doctor> searchByFeeRange(Double minFee, Double maxFee);
+    
+    Page<Doctor> getDoctors(Pageable pageable);
 }

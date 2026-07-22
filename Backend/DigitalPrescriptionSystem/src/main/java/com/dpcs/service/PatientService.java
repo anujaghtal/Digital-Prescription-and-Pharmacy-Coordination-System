@@ -2,6 +2,9 @@ package com.dpcs.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.dpcs.dto.PatientRequest;
 import com.dpcs.entity.Patient;
 
@@ -19,5 +22,7 @@ public interface PatientService {
     List<Patient> searchByBloodGroup(String bloodGroup);
 
     List<Patient> searchByEmergencyContact(String emergencyContact);
+    
+    Page<Patient> getPatients(Pageable pageable);
 
 }

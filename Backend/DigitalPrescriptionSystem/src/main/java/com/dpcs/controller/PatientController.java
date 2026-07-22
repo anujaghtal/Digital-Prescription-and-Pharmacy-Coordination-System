@@ -2,6 +2,8 @@ package com.dpcs.controller;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import com.dpcs.dto.PatientRequest;
@@ -23,7 +25,7 @@ public class PatientController {
         return service.save(request);
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public List<Patient> getAll(){
         return service.getAll();
     }
@@ -56,6 +58,12 @@ public class PatientController {
             @RequestParam String emergencyContact) {
 
         return service.searchByEmergencyContact(emergencyContact);
+
+    }
+    @GetMapping
+    public Page<Patient> getPatients(Pageable pageable) {
+
+        return service.getPatients(pageable);
 
     }
     

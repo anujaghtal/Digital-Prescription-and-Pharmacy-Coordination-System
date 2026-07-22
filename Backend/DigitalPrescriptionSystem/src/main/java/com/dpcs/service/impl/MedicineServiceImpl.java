@@ -8,7 +8,8 @@ import com.dpcs.dto.MedicineRequest;
 import com.dpcs.entity.Medicine;
 import com.dpcs.repository.MedicineRepository;
 import com.dpcs.service.MedicineService;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 @Service
 public class MedicineServiceImpl implements MedicineService {
 
@@ -116,6 +117,13 @@ public class MedicineServiceImpl implements MedicineService {
     @Override
     public List<Medicine> searchActive(Boolean active) {
         return repository.findByActive(active);
+    }
+    
+    @Override
+    public Page<Medicine> getMedicines(Pageable pageable) {
+
+        return repository.findAll(pageable);
+
     }
 
 }

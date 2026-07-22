@@ -2,6 +2,8 @@ package com.dpcs.controller;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import com.dpcs.dto.DoctorRequest;
@@ -23,7 +25,7 @@ public class DoctorController {
         return service.saveDoctor(request);
     }
 
-    @GetMapping
+     @GetMapping("/all")
     public List<Doctor> all() {
         return service.getAllDoctors();
     }
@@ -91,6 +93,13 @@ public class DoctorController {
             @RequestParam Double maxFee) {
 
         return service.searchByFeeRange(minFee, maxFee);
+
+    }
+    
+    @GetMapping
+    public Page<Doctor> getDoctors(Pageable pageable) {
+
+        return service.getDoctors(pageable);
 
     }
 

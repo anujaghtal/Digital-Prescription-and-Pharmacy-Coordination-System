@@ -3,6 +3,9 @@ package com.dpcs.service;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.dpcs.dto.PrescriptionRequest;
 import com.dpcs.entity.Prescription;
 
@@ -32,5 +35,7 @@ public interface PrescriptionService {
     List<Prescription> searchPatientStatus(
             String patientId,
             String status);
+    
+    Page<Prescription> getPrescriptions(Pageable pageable);
 
 }

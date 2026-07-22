@@ -6,7 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import com.dpcs.dto.UserRequest;
 import com.dpcs.entity.User;
 import com.dpcs.service.UserService;
@@ -57,5 +58,13 @@ public class UserController {
     public List<User> searchByRole(@RequestParam String role) {
         return service.searchByRole(role);
     }
+    @GetMapping
+    public Page<User> getUsers(Pageable pageable) {
+
+        return service.getUsers(pageable);
+
+    }
+    
+    
 
 }

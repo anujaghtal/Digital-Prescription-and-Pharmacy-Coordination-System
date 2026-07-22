@@ -2,6 +2,9 @@ package com.dpcs.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.dpcs.dto.MedicineRequest;
 import com.dpcs.entity.Medicine;
 
@@ -41,5 +44,7 @@ public interface MedicineService {
     List<Medicine> searchByMaxStock(Integer stock);
 
     List<Medicine> searchActive(Boolean active);
+    
+    Page<Medicine> getMedicines(Pageable pageable);
 
 }

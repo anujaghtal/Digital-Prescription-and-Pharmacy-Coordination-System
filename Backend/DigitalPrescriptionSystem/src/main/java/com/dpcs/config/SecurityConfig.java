@@ -75,9 +75,12 @@ public class SecurityConfig {
                         .hasAnyRole("ADMIN","DOCTOR","PHARMACIST")
 
                         // DOCTOR
-                        .requestMatchers("/api/doctors/**").hasAnyRole("ADMIN","DOCTOR")
+                        .requestMatchers("/api/doctors/**")
+                        //.authenticated()
+                        .hasAnyRole("ADMIN","DOCTOR")
                         
                         .requestMatchers("/api/prescriptions/**")
+                        //.authenticated()
                         .hasAnyRole("ADMIN","DOCTOR","PHARMACIST")
 
                         // PATIENT

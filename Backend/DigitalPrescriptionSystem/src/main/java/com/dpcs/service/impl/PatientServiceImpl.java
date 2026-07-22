@@ -2,6 +2,8 @@ package com.dpcs.service.impl;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.dpcs.dto.PatientRequest;
@@ -67,6 +69,13 @@ public class PatientServiceImpl implements PatientService{
     public List<Patient> searchByEmergencyContact(String emergencyContact) {
 
         return repository.findByEmergencyContact(emergencyContact);
+
+    }
+    
+    @Override
+    public Page<Patient> getPatients(Pageable pageable) {
+
+        return repository.findAll(pageable);
 
     }
 

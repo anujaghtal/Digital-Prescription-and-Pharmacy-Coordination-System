@@ -3,6 +3,9 @@ package com.dpcs.controller;
 import com.dpcs.dto.PrescriptionRequest;
 import com.dpcs.entity.Prescription;
 import com.dpcs.service.PrescriptionService;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -25,7 +28,7 @@ public class PrescriptionController {
         return prescriptionService.create(request);
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public List<Prescription> getAllPrescriptions() {
         return prescriptionService.getAll();
     }
@@ -102,6 +105,12 @@ public class PrescriptionController {
         return prescriptionService.searchPatientStatus(
                 patientId,
                 status);
+
+    }
+    @GetMapping
+    public Page<Prescription> getPrescriptions(Pageable pageable) {
+
+        return prescriptionService.getPrescriptions(pageable);
 
     }
 
