@@ -1,12 +1,25 @@
 package com.dpcs.dto;
 
+import jakarta.validation.constraints.*;
+
 public class DoctorRequest {
 
-    private String userId;
-    private String specialization;
-    private String licenseNumber;
-    private Integer yearsOfExperience;
-    private Double consultationFee;
+	 @NotBlank(message = "User Id is required")
+	    private String userId;
+
+	    @NotBlank(message = "Specialization is required")
+	    private String specialization;
+
+	    @NotBlank(message = "License Number is required")
+	    private String licenseNumber;
+
+	    @NotNull(message = "Experience is required")
+	    @Min(value = 0, message = "Experience cannot be negative")
+	    private Integer yearsOfExperience;
+
+	    @NotNull(message = "Consultation Fee is required")
+	    @Positive(message = "Fee must be greater than 0")
+	    private Double consultationFee;
 	public String getUserId() {
 		return userId;
 	}
@@ -37,7 +50,5 @@ public class DoctorRequest {
 	public void setConsultationFee(Double consultationFee) {
 		this.consultationFee = consultationFee;
 	}
-
-    // Getters and Setters
     
 }

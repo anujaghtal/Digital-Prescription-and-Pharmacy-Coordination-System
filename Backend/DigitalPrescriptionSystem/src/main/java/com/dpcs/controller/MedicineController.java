@@ -10,6 +10,8 @@ import com.dpcs.dto.MedicineRequest;
 import com.dpcs.entity.Medicine;
 import com.dpcs.service.MedicineService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/medicines")
 public class MedicineController {
@@ -21,7 +23,7 @@ public class MedicineController {
     }
 
     @PostMapping
-    public Medicine save(@RequestBody MedicineRequest request) {
+    public Medicine save(@Valid @RequestBody MedicineRequest request) {
         return service.save(request);
     }
 
@@ -118,7 +120,7 @@ public class MedicineController {
     @PutMapping("/{id}")
     public Medicine update(
             @PathVariable String id,
-            @RequestBody MedicineRequest request) {
+            @Valid @RequestBody MedicineRequest request) {
 
         return service.update(id, request);
     }

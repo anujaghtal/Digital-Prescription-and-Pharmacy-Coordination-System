@@ -10,6 +10,8 @@ import com.dpcs.dto.DoctorRequest;
 import com.dpcs.entity.Doctor;
 import com.dpcs.service.DoctorService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/doctors")
 public class DoctorController {
@@ -21,7 +23,7 @@ public class DoctorController {
     }
 
     @PostMapping
-    public Doctor save(@RequestBody DoctorRequest request) {
+    public Doctor save(@Valid @RequestBody DoctorRequest request) {
         return service.saveDoctor(request);
     }
 
