@@ -1,5 +1,8 @@
 package com.dpcs.service.impl;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -39,5 +42,32 @@ public class UserServiceImpl implements UserService {
         user.setRole(request.getRole());
 
         return repository.save(user);
+    }
+    
+    @Override
+    public List<User> searchByName(String name) {
+
+        return repository.findByNameContainingIgnoreCase(name);
+
+    }
+
+    @Override
+    public Optional<User> searchByPhone(String phone) {
+
+        return repository.findByPhone(phone);
+
+    }
+    @Override
+    public Optional<User> searchByEmail(String email) {
+
+        return repository.findByEmail(email);
+
+    }
+
+    @Override
+    public List<User> searchByRole(String role) {
+
+        return repository.findByRole(role);
+
     }
 }

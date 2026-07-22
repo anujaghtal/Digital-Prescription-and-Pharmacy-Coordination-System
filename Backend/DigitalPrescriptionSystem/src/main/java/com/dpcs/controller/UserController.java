@@ -1,5 +1,7 @@
 package com.dpcs.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -26,6 +28,34 @@ public class UserController {
 
         return new ResponseEntity<>(user,HttpStatus.CREATED);
 
+    }
+    
+    @GetMapping("/search/phone")
+    public ResponseEntity<User> searchByPhone(@RequestParam String phone) {
+
+        return service.searchByPhone(phone)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+
+    }
+
+    @GetMapping("/search/email")
+    public ResponseEntity<User> searchByEmail(@RequestParam String email) {
+
+        return service.searchByEmail(email)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+
+    }
+    
+    @GetMapping("/search/name")
+    public List<User> searchByName(@RequestParam String name) {
+        return service.searchByName(name);
+    }
+
+    @GetMapping("/search/role")
+    public List<User> searchByRole(@RequestParam String role) {
+        return service.searchByRole(role);
     }
 
 }
