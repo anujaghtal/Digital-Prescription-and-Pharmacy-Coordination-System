@@ -30,4 +30,6 @@ public interface DoctorService {
     List<Doctor> searchByFeeRange(Double minFee, Double maxFee);
     
     Page<Doctor> getDoctors(Pageable pageable);
+    
+    Doctor updateDoctor(String id, DoctorRequest request);
 }

@@ -105,4 +105,19 @@ public class DoctorServiceImpl implements DoctorService {
 
     }
     
+    @Override
+    public Doctor updateDoctor(String id, DoctorRequest request) {
+
+        Doctor doctor = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Doctor not found"));
+
+        doctor.setUserId(request.getUserId());
+        doctor.setSpecialization(request.getSpecialization());
+        doctor.setLicenseNumber(request.getLicenseNumber());
+        doctor.setYearsOfExperience(request.getYearsOfExperience());
+        doctor.setConsultationFee(request.getConsultationFee());
+
+        return repository.save(doctor);
+    }
+    
 }

@@ -102,5 +102,13 @@ public class DoctorController {
         return service.getDoctors(pageable);
 
     }
+    
+    @PutMapping("/{id}")
+    public Doctor update(
+            @PathVariable String id,
+            @RequestBody DoctorRequest request) {
+
+        return service.updateDoctor(id, request);
+    }
 
 }
