@@ -53,5 +53,69 @@ public class MedicineServiceImpl implements MedicineService {
     public void delete(String id) {
         repository.deleteById(id);
     }
+    @Override
+    public List<Medicine> searchByName(String name) {
+        return repository.findByNameContainingIgnoreCase(name);
+    }
+
+    @Override
+    public List<Medicine> searchByGenericName(String genericName) {
+        return repository.findByGenericNameContainingIgnoreCase(genericName);
+    }
+
+    @Override
+    public List<Medicine> searchByManufacturer(String manufacturer) {
+        return repository.findByManufacturerContainingIgnoreCase(manufacturer);
+    }
+
+    @Override
+    public List<Medicine> searchByStrength(String strength) {
+        return repository.findByStrengthIgnoreCase(strength);
+    }
+
+    @Override
+    public List<Medicine> searchByDosageForm(String dosageForm) {
+        return repository.findByDosageFormIgnoreCase(dosageForm);
+    }
+
+    @Override
+    public List<Medicine> searchByExactPrice(Double price) {
+        return repository.findByPrice(price);
+    }
+
+    @Override
+    public List<Medicine> searchByMaxPrice(Double price) {
+        return repository.findByPriceLessThanEqual(price);
+    }
+
+    @Override
+    public List<Medicine> searchByMinPrice(Double price) {
+        return repository.findByPriceGreaterThanEqual(price);
+    }
+
+    @Override
+    public List<Medicine> searchByPriceRange(Double minPrice, Double maxPrice) {
+        return repository.findByPriceBetween(minPrice, maxPrice);
+    }
+
+    @Override
+    public List<Medicine> searchByExactStock(Integer stock) {
+        return repository.findByStockQuantity(stock);
+    }
+
+    @Override
+    public List<Medicine> searchByMinStock(Integer stock) {
+        return repository.findByStockQuantityGreaterThanEqual(stock);
+    }
+
+    @Override
+    public List<Medicine> searchByMaxStock(Integer stock) {
+        return repository.findByStockQuantityLessThanEqual(stock);
+    }
+
+    @Override
+    public List<Medicine> searchActive(Boolean active) {
+        return repository.findByActive(active);
+    }
 
 }

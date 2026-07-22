@@ -40,5 +40,70 @@ public class MedicineController {
 
         return "Medicine Deleted Successfully";
     }
+    @GetMapping("/search/name")
+    public List<Medicine> searchByName(@RequestParam String name) {
+        return service.searchByName(name);
+    }
+    @GetMapping("/search/generic")
+    public List<Medicine> searchByGenericName(@RequestParam String genericName) {
+        return service.searchByGenericName(genericName);
+    }
+    
+    @GetMapping("/search/manufacturer")
+    public List<Medicine> searchByManufacturer(@RequestParam String manufacturer) {
+        return service.searchByManufacturer(manufacturer);
+    }
+    
+    @GetMapping("/search/strength")
+    public List<Medicine> searchByStrength(@RequestParam String strength) {
+        return service.searchByStrength(strength);
+    }
+    
+    @GetMapping("/search/dosage")
+    public List<Medicine> searchByDosage(@RequestParam String dosageForm) {
+        return service.searchByDosageForm(dosageForm);
+    }
+    
+    @GetMapping("/search/price")
+    public List<Medicine> searchByExactPrice(@RequestParam Double price) {
+        return service.searchByExactPrice(price);
+    }
+    @GetMapping("/search/price/max")
+    public List<Medicine> searchByMaxPrice(@RequestParam Double price) {
+        return service.searchByMaxPrice(price);
+    }
+    
+    @GetMapping("/search/price/min")
+    public List<Medicine> searchByMinPrice(@RequestParam Double price) {
+        return service.searchByMinPrice(price);
+    }
+    
+    @GetMapping("/search/price/range")
+    public List<Medicine> searchByPriceRange(
+            @RequestParam Double minPrice,
+            @RequestParam Double maxPrice) {
 
+        return service.searchByPriceRange(minPrice, maxPrice);
+    }
+    
+    @GetMapping("/search/stock")
+    public List<Medicine> searchByExactStock(@RequestParam Integer stock) {
+        return service.searchByExactStock(stock);
+    }
+    
+    @GetMapping("/search/stock/min")
+    public List<Medicine> searchByMinStock(@RequestParam Integer stock) {
+        return service.searchByMinStock(stock);
+    }
+    
+    @GetMapping("/search/stock/max")
+    public List<Medicine> searchByMaxStock(@RequestParam Integer stock) {
+        return service.searchByMaxStock(stock);
+    }
+    
+    @GetMapping("/search/active")
+    public List<Medicine> searchActive(@RequestParam Boolean active) {
+        return service.searchActive(active);
+    }
+    
 }
