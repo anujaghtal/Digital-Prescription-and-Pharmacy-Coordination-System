@@ -114,4 +114,12 @@ public class MedicineController {
         return service.getMedicines(pageable);
 
     }
+    
+    @PutMapping("/{id}")
+    public Medicine update(
+            @PathVariable String id,
+            @RequestBody MedicineRequest request) {
+
+        return service.update(id, request);
+    }
 }

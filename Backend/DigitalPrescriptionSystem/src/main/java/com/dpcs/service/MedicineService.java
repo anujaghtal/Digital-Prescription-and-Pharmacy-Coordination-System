@@ -46,5 +46,6 @@ public interface MedicineService {
     List<Medicine> searchActive(Boolean active);
     
     Page<Medicine> getMedicines(Pageable pageable);
+    Medicine update(String id, MedicineRequest request);
 
 }

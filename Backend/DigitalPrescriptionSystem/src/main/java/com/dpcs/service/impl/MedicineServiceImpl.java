@@ -125,5 +125,22 @@ public class MedicineServiceImpl implements MedicineService {
         return repository.findAll(pageable);
 
     }
+    
+    @Override
+    public Medicine update(String id, MedicineRequest request) {
+
+        Medicine medicine = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Medicine not found"));
+
+        medicine.setName(request.getName());
+        medicine.setGenericName(request.getGenericName());
+        medicine.setManufacturer(request.getManufacturer());
+        medicine.setStrength(request.getStrength());
+        medicine.setDosageForm(request.getDosageForm());
+        medicine.setPrice(request.getPrice());
+        medicine.setStockQuantity(request.getStockQuantity());
+
+        return repository.save(medicine);
+    }
 
 }
