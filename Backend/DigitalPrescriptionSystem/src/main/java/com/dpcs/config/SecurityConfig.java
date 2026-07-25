@@ -97,6 +97,8 @@ public class SecurityConfig {
                         .hasAnyRole("ADMIN", "DOCTOR", "PATIENT")
                         .requestMatchers("/api/dashboard/admin")
                         .hasRole("ADMIN")
+                        .requestMatchers("/api/reports/**")
+                        .hasRole("ADMIN")
 
                         .anyRequest().authenticated()
 

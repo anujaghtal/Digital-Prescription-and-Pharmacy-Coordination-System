@@ -24,4 +24,6 @@ public interface AppointmentRepository extends JpaRepository<Appointment, String
 	    List<Appointment> findByPatientIdAndStatusIgnoreCase(
 	            String patientId,
 	            String status);
+	    
+	    long countByStatusIgnoreCase(String status);
 }
