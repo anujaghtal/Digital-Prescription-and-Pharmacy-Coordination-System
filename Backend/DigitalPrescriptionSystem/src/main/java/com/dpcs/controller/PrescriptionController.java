@@ -63,12 +63,11 @@ public class PrescriptionController {
 
     }
     
-    @GetMapping("/search/status")
-    public List<Prescription> searchStatus(
-            @RequestParam String status) {
+    @GetMapping("/status/{status}")
+    public List<Prescription> searchByStatus(
+            @PathVariable String status) {
 
         return prescriptionService.searchByStatus(status);
-
     }
     
     @GetMapping("/search/date-range")
@@ -119,6 +118,44 @@ public class PrescriptionController {
             @RequestBody PrescriptionRequest request) {
 
         return prescriptionService.update(id, request);
+    }
+    @GetMapping("/active")
+    public List<Prescription> searchByActive(
+            @RequestParam Boolean active) {
+
+        return prescriptionService.searchByActive(active);
+    }
+    @PatchMapping("/{id}/status")
+    public Prescription updateStatus(
+            @PathVariable String id,
+            @RequestParam String status) {
+
+        return prescriptionService.updateStatus(id, status);
+    }
+    
+    @PatchMapping("/{id}/verify")
+    public Prescription verify(
+            @PathVariable String id) {
+
+        return prescriptionService.verify(id);
+    }
+    @PatchMapping("/{id}/complete")
+    public Prescription complete(
+            @PathVariable String id) {
+
+        return prescriptionService.complete(id);
+    }
+    @PatchMapping("/{id}/cancel")
+    public Prescription cancel(
+            @PathVariable String id) {
+
+        return prescriptionService.cancel(id);
+    }
+    @GetMapping("/patient/{patientId}")
+    public List<Prescription> getPatientHistory(
+            @PathVariable String patientId) {
+
+        return prescriptionService.getPatientHistory(patientId);
     }
 
 }

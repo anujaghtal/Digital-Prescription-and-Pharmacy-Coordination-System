@@ -25,5 +25,6 @@ public interface PrescriptionRepository
 	    List<Prescription> findByPatient_IdAndStatusIgnoreCase(
 	            String patientId,
 	            String status);
-	    List<Prescription> findByActiveTrue();
+
+	    List<Prescription> findByActive(Boolean active);
 }

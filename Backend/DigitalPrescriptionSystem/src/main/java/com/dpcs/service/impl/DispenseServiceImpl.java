@@ -11,6 +11,7 @@ import com.dpcs.entity.Prescription;
 import com.dpcs.entity.PrescriptionItem;
 import com.dpcs.exception.ResourceNotFoundException;
 import com.dpcs.repository.DispenseRepository;
+import com.dpcs.repository.MedicineRepository;
 import com.dpcs.repository.PharmacyRepository;
 import com.dpcs.repository.PrescriptionItemRepository;
 import com.dpcs.repository.PrescriptionRepository;
@@ -26,17 +27,20 @@ public class DispenseServiceImpl implements DispenseService {
     private final PharmacyRepository pharmacyRepository;
 
     private final PrescriptionItemRepository itemRepository;
+    private final MedicineRepository medicineRepository;
 
     public DispenseServiceImpl(
             DispenseRepository dispenseRepository,
             PrescriptionRepository prescriptionRepository,
             PharmacyRepository pharmacyRepository,
-            PrescriptionItemRepository itemRepository) {
+            PrescriptionItemRepository itemRepository,
+            MedicineRepository medicineRepository) {
 
         this.dispenseRepository = dispenseRepository;
         this.prescriptionRepository = prescriptionRepository;
         this.pharmacyRepository = pharmacyRepository;
         this.itemRepository = itemRepository;
+        this.medicineRepository = medicineRepository;
 
     }
 
@@ -47,26 +51,28 @@ public class DispenseServiceImpl implements DispenseService {
                 prescriptionRepository.findById(request.getPrescriptionId())
                         .orElseThrow(() ->
                                 new ResourceNotFoundException("Prescription Not Found"));
+        if ("DISPENSED".equalsIgnoreCase(prescription.getStatus())) {
+            throw new IllegalStateException("Prescription already dispensed");
+        }
 
         Pharmacy pharmacy =
                 pharmacyRepository.findById(request.getPharmacyId())
                         .orElseThrow(() ->
                                 new ResourceNotFoundException("Pharmacy Not Found"));
 
-        List<PrescriptionItem> items = itemRepository.findAll();
+        List<PrescriptionItem> items =  itemRepository.findByPrescription_Id(prescription.getId());
 
         for(PrescriptionItem item : items){
 
-            if(item.getPrescription().getId()
-                    .equals(prescription.getId())){
+        	 if (item.getMedicine().getStockQuantity() <= 0) {
+                 throw new IllegalStateException(
+                         item.getMedicine().getName() + " is out of stock");
+             }
 
-                item.getMedicine().setStockQuantity(
+             item.getMedicine().setStockQuantity(
+                     item.getMedicine().getStockQuantity() - 1);
 
-                        item.getMedicine().getStockQuantity()-1
-
-                );
-
-            }
+             medicineRepository.save(item.getMedicine());
 
         }//or To make the stock update actually persist, inject MedicineRepository and save each updated medicine
         //medicineRepository.save(item.getMedicine());

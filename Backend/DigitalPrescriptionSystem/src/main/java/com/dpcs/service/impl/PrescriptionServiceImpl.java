@@ -57,7 +57,8 @@ public class PrescriptionServiceImpl implements PrescriptionService {
         prescription.setAppointment(appointment);
         prescription.setDiagnosis(request.getDiagnosis());
         prescription.setNotes(request.getNotes());
-        prescription.setStatus("ACTIVE");
+        prescription.setStatus("CREATED");
+        prescription.setActive(true);
 
         return prescriptionRepository.save(prescription);
     }
@@ -164,5 +165,65 @@ public class PrescriptionServiceImpl implements PrescriptionService {
 
         return prescriptionRepository.save(prescription);
     }
+
+    @Override
+    public List<Prescription> searchByActive(Boolean active) {
+        return prescriptionRepository.findByActive(active);
+    }
+
+    @Override
+    public Prescription updateStatus(String id, String status) {
+
+        Prescription prescription = prescriptionRepository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Prescription not found"));
+
+        prescription.setStatus(status);
+
+        return prescriptionRepository.save(prescription);
+    }
+    @Override
+    public Prescription verify(String id) {
+
+        Prescription prescription = prescriptionRepository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Prescription not found"));
+
+        prescription.setStatus("VERIFIED");
+
+        return prescriptionRepository.save(prescription);
+    }
+    
+    @Override
+    public Prescription complete(String id) {
+
+        Prescription prescription = prescriptionRepository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Prescription not found"));
+
+        prescription.setStatus("COMPLETED");
+
+        return prescriptionRepository.save(prescription);
+    }
+    
+    @Override
+    public Prescription cancel(String id) {
+
+        Prescription prescription = prescriptionRepository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Prescription not found"));
+
+        prescription.setStatus("CANCELLED");
+
+        prescription.setActive(false);
+
+        return prescriptionRepository.save(prescription);
+    }
+    @Override
+    public List<Prescription> getPatientHistory(String patientId) {
+
+        return prescriptionRepository.findByPatient_Id(patientId);
+    }
+    
 
 }

@@ -40,4 +40,16 @@ public interface PrescriptionService {
     
     Prescription update(String id, PrescriptionRequest request);
 
+    List<Prescription> searchByActive(Boolean active);
+
+    Prescription updateStatus(String id, String status);
+    
+    Prescription verify(String id);
+
+    Prescription complete(String id);
+
+    Prescription cancel(String id);
+    List<Prescription> getPatientHistory(String patientId);
+   // List<Prescription> getDoctorHistory(String doctorId);
+
 }
