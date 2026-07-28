@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import ProtectedRoute from "./components/ProtectedRoute";
-import AdminDashboard from "./pages/admin/Dashboard";
+import AdminDashboard from "./pages/admin/AdminDashboard";
 import DoctorDashboard from "./pages/doctor/Dashboard";
 import PatientDashboard from "./pages/patient/Dashboard";
 import PharmacistDashboard from "./pages/pharmacist/Dashboard";
