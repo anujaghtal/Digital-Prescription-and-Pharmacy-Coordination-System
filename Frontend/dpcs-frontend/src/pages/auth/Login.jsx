@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import api from "../../api/api";
 
 function Login() {
@@ -6,7 +7,7 @@ function Login() {
     const [email, setEmail] = useState("");
 
     const [password, setPassword] = useState("");
-
+    const navigate = useNavigate();
     const login = async (e) => {
 
         e.preventDefault();
@@ -20,7 +21,11 @@ function Login() {
 
             });
 
+            localStorage.setItem("token", response.data.token);
+
             console.log(response.data);
+
+            navigate("/admin");
 
         } catch (error) {
 
