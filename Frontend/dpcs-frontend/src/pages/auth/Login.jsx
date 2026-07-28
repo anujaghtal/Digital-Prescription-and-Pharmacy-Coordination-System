@@ -22,10 +22,30 @@ function Login() {
             });
 
             localStorage.setItem("token", response.data.token);
-
+            localStorage.setItem("role", response.data.role);
             console.log(response.data);
+            switch (response.data.role) {
 
-            navigate("/admin");
+            case "ADMIN":
+                navigate("/admin");
+                break;
+
+            case "DOCTOR":
+                navigate("/doctor");
+                break;
+
+            case "PATIENT":
+                navigate("/patient");
+                break;
+
+            case "PHARMACIST":
+                navigate("/pharmacist");
+                break;
+
+            default:
+                alert("Unknown Role");
+        }
+           // navigate("/admin");
 
         } catch (error) {
 
