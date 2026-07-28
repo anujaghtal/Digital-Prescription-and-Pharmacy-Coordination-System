@@ -95,6 +95,18 @@ function Login() {
 
                             </button>
 
+                            <div className="text-center mt-3">
+
+                            <button
+                                type="button"
+                                className="btn btn-link"
+                                onClick={() => navigate("/register")}>
+
+                                Create Account
+
+                            </button>
+
+                        </div>
                         </form>
 
                     </div>
