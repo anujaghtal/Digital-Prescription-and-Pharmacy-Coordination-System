@@ -10,6 +10,10 @@ import PharmacistDashboard from "./pages/pharmacist/Dashboard";
 import MedicineList from "./pages/medicine/MedicineList";
 import AddMedicine from "./pages/medicine/AddMedicine";
 import EditMedicine from "./pages/medicine/EditMedicine";
+import PatientList from "./pages/patient/PatientList";
+import AddPatient from "./pages/patient/AddPatient";
+import EditPatient from "./pages/patient/EditPatient";
+
 function App() {
   return (
     <>
@@ -81,6 +85,11 @@ function App() {
                         </ProtectedRoute>
                     }
                 />
+                <Route path="/patients" element={<PatientList />} />
+
+                <Route path="/patients/add" element={<AddPatient />} />
+
+                <Route path="/patients/edit/:id" element={<EditPatient />} />
       
             </Routes>
 
