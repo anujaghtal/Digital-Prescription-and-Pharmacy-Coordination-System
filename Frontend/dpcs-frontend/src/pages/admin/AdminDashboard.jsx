@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import api from "../../api/api";
 import Navbar from "../../components/Navbar";
-
+import { useNavigate } from "react-router-dom";
 function AdminDashboard() {
-
+    const navigate = useNavigate();
     const [dashboard, setDashboard] = useState({
 
         totalAppointments: 0,
@@ -117,8 +117,105 @@ function AdminDashboard() {
                     </div>
 
                 </div>
+                <h3 className="mt-5 mb-3">Modules</h3>
+
+                <div className="row">
+
+                    <div className="col-md-4 mb-3">
+
+                        <div
+                            className="card shadow p-4 text-center"
+                            style={{ cursor: "pointer" }}
+                            onClick={() => navigate("/medicines")}>
+
+                            <h4>💊 Medicines</h4>
+
+                            <p>Manage Medicines</p>
+
+                        </div>
+
+                    </div>
+
+                    <div className="col-md-4 mb-3">
+
+                        <div
+                            className="card shadow p-4 text-center"
+                            style={{ cursor: "pointer" }}
+                            onClick={() => navigate("/doctors")}>
+
+                            <h4>👨‍⚕️ Doctors</h4>
+
+                            <p>Manage Doctors</p>
+
+                        </div>
+
+                    </div>
+
+                    <div className="col-md-4 mb-3">
+
+                        <div
+                            className="card shadow p-4 text-center"
+                            style={{ cursor: "pointer" }}
+                            onClick={() => navigate("/patients")}>
+
+                            <h4>🧑 Patients</h4>
+
+                            <p>Manage Patients</p>
+
+                        </div>
+
+                    </div>
+
+                    <div className="col-md-4 mb-3">
+
+                        <div
+                            className="card shadow p-4 text-center"
+                            style={{ cursor: "pointer" }}
+                            onClick={() => navigate("/appointments")}>
+
+                            <h4>📅 Appointments</h4>
+
+                            <p>Manage Appointments</p>
+
+                        </div>
+
+                    </div>
+
+                    <div className="col-md-4 mb-3">
+
+                        <div
+                            className="card shadow p-4 text-center"
+                            style={{ cursor: "pointer" }}
+                            onClick={() => navigate("/prescriptions")}>
+
+                            <h4>📄 Prescriptions</h4>
+
+                            <p>Manage Prescriptions</p>
+
+                        </div>
+
+                    </div>
+
+                    <div className="col-md-4 mb-3">
+
+                        <div
+                            className="card shadow p-4 text-center"
+                            style={{ cursor: "pointer" }}
+                            onClick={() => navigate("/pharmacies")}>
+
+                            <h4>🏥 Pharmacies</h4>
+
+                            <p>Manage Pharmacies</p>
+
+                        </div>
+
+                    </div>
+
+                </div>
 
             </div>
+
+            
 
         </>
 
