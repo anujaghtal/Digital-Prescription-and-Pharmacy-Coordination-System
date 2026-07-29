@@ -13,6 +13,9 @@ import EditMedicine from "./pages/medicine/EditMedicine";
 import PatientList from "./pages/patient/PatientList";
 import AddPatient from "./pages/patient/AddPatient";
 import EditPatient from "./pages/patient/EditPatient";
+import DoctorList from "./pages/doctor/DoctorList";
+import AddDoctor from "./pages/doctor/AddDoctor";
+import EditDoctor from "./pages/doctor/EditDoctor";
 
 function App() {
   return (
@@ -90,6 +93,11 @@ function App() {
                 <Route path="/patients/add" element={<AddPatient />} />
 
                 <Route path="/patients/edit/:id" element={<EditPatient />} />
+                <Route path="/doctors" element={<DoctorList />} />
+
+                <Route path="/doctors/add" element={<AddDoctor />} />
+
+                <Route path="/doctors/edit/:id" element={<EditDoctor />} />
       
             </Routes>
 
